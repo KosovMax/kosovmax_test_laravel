@@ -16,19 +16,7 @@
         </div>
     </div>
 </div>
-   
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
-<!-- <input type="hidden" name="_token" value="njamFfS7KM4emXj1NcfBlkDwaEbAB1C21mjmoywX"> -->
    
 <form action="{{ route('companies.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -37,7 +25,12 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                <input type="text" name="name" class="form-control" placeholder="Name">
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Name">
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

@@ -19,17 +19,7 @@
 		        </div>
         </div>
     </div>
-   
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
   
     <form action="{{ route('employees.update',$employees->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -39,13 +29,23 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>First name:</strong>
-                <input type="text" name="first_name" value="{{ $employees->first_name }}" class="form-control" placeholder="First name">
+                <input type="text" name="first_name" value="{{ $employees->first_name }}" class="form-control @error('first_name') is-invalid @enderror" placeholder="First name">
+                @error('first_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Last name:</strong>
-                <input type="text" name="last_name" value="{{ $employees->last_name }}" class="form-control" placeholder="Last name">
+                <input type="text" name="last_name" value="{{ $employees->last_name }}" class="form-control @error('last_name') is-invalid @enderror" placeholder="Last name">
+                @error('last_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

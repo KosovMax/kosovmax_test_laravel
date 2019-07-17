@@ -42,10 +42,12 @@
             <td>{{ $compan->name }}</td>
             <td>{{ $compan->email }}</td>
             <td>
-                @if(Storage::exists('public/'.$compan->id.'/logo.'.explode('.',$compan->logo)[1]))
-                    <img class="logoList" src="{{ asset('storage/'.$compan->id.'/logo.'.explode('.',$compan->logo)[1])}}">
-                @else
-                    {{$compan->logo}}
+                @if($compan->logo != '')
+                    @if(Storage::exists('public/'.$compan->id.'/logo.'.explode('.',$compan->logo)[1]))
+                        <img class="logoList" src="{{ asset('storage/'.$compan->id.'/logo.'.explode('.',$compan->logo)[1])}}">
+                    @else
+                        {{$compan->logo}}
+                    @endif
                 @endif
 
             </td>

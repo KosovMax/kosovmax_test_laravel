@@ -36,12 +36,15 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Logo:</strong>
-
-                 @if(Storage::exists('public/'.$companies->id.'/logo.'.explode('.',$companies->logo)[1]))
+                    @if($companies->logo != '')
+                    @if(Storage::exists('public/'.$companies->id.'/logo.'.explode('.',$companies->logo)[1]))
                         <?php
                             $logo = asset('storage/'.$companies->id.'/logo.'.explode('.',$companies->logo)[1]);
                         ?>
                         <div class="viewLogo no" id="viewLogo" style="background-image: url({{$logo}});"  >
+                    @else
+                        <div class="viewLogo" id="viewLogo"  >
+                    @endif
                     @else
                         <div class="viewLogo" id="viewLogo"  >
                     @endif

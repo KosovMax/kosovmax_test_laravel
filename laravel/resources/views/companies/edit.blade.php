@@ -51,6 +51,7 @@
 	        <div class="col-xs-12 col-sm-12 col-md-12">
 	            <div class="form-group">
 	                <label for="Logo">Logo:</label>
+                    @if($companies->logo != '')
 	                 @if(Storage::exists('public/'.$companies->id.'/logo.'.explode('.',$companies->logo)[1]))
 	                    <?php
 	                    	$logo = asset('storage/'.$companies->id.'/logo.'.explode('.',$companies->logo)[1]);
@@ -58,7 +59,10 @@
 	                    <div class="viewLogo no" id="viewLogo" style="background-image: url({{$logo}});"  >
 	                @else
 	                    <div class="viewLogo" id="viewLogo"  >
-	                @endif
+                    @endif
+	                @else
+                        <div class="viewLogo" id="viewLogo"  >
+                    @endif
 	                    <i class="fa fa-camera" aria-hidden="true"></i>
 	                </div>
 	                <input type="hidden" name="logo" value="{{ $companies->logo }}" id="logoName">

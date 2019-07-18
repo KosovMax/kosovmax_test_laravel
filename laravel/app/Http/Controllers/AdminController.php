@@ -34,7 +34,8 @@ class AdminController extends Controller
      */
     public function main()
     {
-        return view('admin.main');
+        // return view('admin.main');
+        return redirect()->route('companies.index');
     }
 
     public function mail($email)

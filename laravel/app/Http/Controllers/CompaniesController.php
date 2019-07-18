@@ -54,9 +54,12 @@ class CompaniesController extends Controller
   
         $id = Companies::create($request->all())->id;
 
-        $fileName = 'logo.'.$request->image->getClientOriginalExtension();
+        if ($request->hasFile('image')) {
 
-        $request->image->storeAs('public/'.$id, $fileName);
+            $fileName = 'logo.'.$request->image->getClientOriginalExtension();
+
+            $request->image->storeAs('public/'.$id, $fileName);
+        }
    
         return redirect()->route('companies.index')
                         ->with('success','Companion created successfully.');
